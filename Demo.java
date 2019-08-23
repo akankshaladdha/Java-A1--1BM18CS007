@@ -1,7 +1,7 @@
 import java.util.*;
 class Time
 {
-	int h,m,s;
+	int h,m,s,day;
 	Time(int h,int m,int s)
 	{
 		this.h=h;
@@ -41,7 +41,7 @@ class Time
 	}
 	void print()
 	{
-		System.out.println("Time is :  " +h+ ":"+m +":"+s);
+		System.out.println("Time is :  " +day+"d"+" "+h+ ":"+m +":"+s);
 	} 	
 }
 class Demo
