@@ -1,70 +1,71 @@
 import java.util.*;
 class Matrix
 {
-	public static void main(String args[])
-{
-	Scanner se=new Scanner(System.in);
-	int rs1,rs2,cs1,cs2,i,j;
-	System.out.println("Enter row size and col size of matrix A");
-	rs1=se.nextInt();
-	cs1=se.nextInt();
-	int arr1[][]=new int[rs1][cs1];
-	System.out.println("Enter row size and col size of matrix B");
-	rs2=se.nextInt();
-	cs2=se.nextInt();
-	int arr2[][]=new int[rs2][cs2];
-	int arr3[][]=new int[rs1][cs1];
-	int arr4[][]=new int[rs1][cs1];
-	System.out.println("Enter elements of matrix A");
-	for(i=0;i<rs1;i++)
+	float m[][];
+	int ns,nm;
+	void get_data()
 	{
-		for(j=0;j<cs1;j++)
+		System.out.println("Enter no of students and marks");
+		Scanner se=new Scanner(System.in);
+		ns=se.nextInt();
+		nm=se.nextInt();
+		m=new float[ns+2][nm+2];
+		System.out.println("Enter elements in matrix");
+		for(int i=0;i<ns;i++)
 		{
-			arr1[i][j]=se.nextInt();
-		}
-	}
-	System.out.println("Enter elements of matrix B");
-	for(i=0;i<rs2;i++)
-	{
-		for(j=0;j<cs2;j++)
-		{
-			arr2[i][j]=se.nextInt();
-		}
-	}
-	if((rs1==rs2)&&(cs1==cs2))
-	{
-		for(i=0;i<rs1;i++)
-		{
-			for(j=0;j<cs1;j++)
+			for(int j=0;j<nm;j++)
 			{
-				 arr3[i][j] = (arr1[i][j]) + (arr2[i][j]);
-				 arr4[i][j] = (arr1[i][j]) - (arr2[i][j]);
+				m[i][j]=se.nextFloat();
 			}
 		}
-	
-	System.out.println("Matrix after adding elements");
-	for(i=0;i<rs1;i++)
+	}
+	void cal()
 	{
-		for(j=0;j<cs1;j++)
+		float sum=0;
+		float avg=0;
+		for(int i=0;i<ns;i++)
 		{
-			System.out.print(arr3[i][j] + " ");
+			for(int j=0;j<nm;j++)
+			{
+				
+				sum=sum+m[i][j];
+				m[i][nm+1]=sum;
+				avg=(float)sum/nm;
+				m[i][nm+2]=avg;
+			}
 		}
-		System.out.print("\n");
-	}
-	System.out.println("Matrix after subtracting elements");
-	for(i=0;i<rs1;i++)
-	{
-		for(j=0;j<cs1;j++)
+		for(int j=0;j<nm;j++)
 		{
-			System.out.print(arr4[i][j] + " ");
+			for(int i=0;i<ns;i++)
+			{
+				
+				sum=sum+m[i][j];
+				m[j][ns+1]=sum;
+				avg=(float)sum/ns;
+				m[j][nm+2]=avg;
+			}
 		}
-		System.out.print("\n");
 	}
-	}
-	else
+	void print_data()
 	{
-		System.out.println("Operation cant be performed");
+		System.out.println(" Details are");
+		for(int i=0;i<ns+2;i++)
+		{
+			for(int j=0;j<nm+2;j++)
+			{
+				System.out.print(m[i][j]);
+			}
+			System.out.print("\n");
+		}
 	}
 }
+class Demo
+{
+	public static void main(String args[])
+{
+	Matrix m1=new Matrix();
+	m1.get_data();
+	m1.cal();
+	m1.print_data();
 }
-	
+}
